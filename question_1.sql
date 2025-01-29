@@ -1,7 +1,7 @@
 -- Q1: Rostou v průběhu let mzdy ve všech odvětvích, 
 -- nebo v některých klesají?
 
-CREATE OR REPLACE VIEW v1 AS (
+CREATE OR REPLACE VIEW v1_vojtech_derner AS (
 SELECT 
 	industry,
 	avg(avg_salary) sal_avg,
@@ -17,13 +17,15 @@ FROM t_vojtech_derner_project_sql_primary_final AS tvdpspf
 GROUP BY industry, salary_year
 );
 
+SELECT * FROM v1_vojtech_derner;
+
 -- 0 = payroll decline, 1 = payroll growth, 5 = payroll stable
 
 SELECT
 	industry,
 	salary_year,
 	diff
-FROM v1
+FROM v1_vojtech_derner
 WHERE 
 	1=1
 	AND diff IN (0,5)
