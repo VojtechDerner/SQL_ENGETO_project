@@ -41,7 +41,9 @@ CREATE OR REPLACE TABLE t_vojtech_derner_project_SQL_secondary_final
 SELECT	
 c.country,
 e.`year` ,
-e.GDP 
+e.GDP,
+e.gini,
+e.population
 FROM economies AS e
 JOIN countries AS c 
 	ON e.country = c.country
