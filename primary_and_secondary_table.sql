@@ -5,8 +5,7 @@ SELECT
 	avg(cpay.value) avg_salary,
 	cpay.payroll_year salary_year,
 	cpc.name foodstuff,
-	avg(cp.value) avg_price,
-	YEAR(cp.date_from) price_year
+	avg(cp.value) avg_price
 FROM czechia_payroll AS cpay 
 JOIN czechia_payroll_industry_branch AS cpib 
 	ON cpay.industry_branch_code = cpib.code 
@@ -19,18 +18,18 @@ WHERE cpay.payroll_year BETWEEN 2006 AND 2018
 	AND cpay.calculation_code = 100
 	AND cpay.industry_branch_code IS NOT NULL
 	AND cp.region_code IS NULL 
-GROUP BY industry, salary_year, foodstuff, price_year;
+GROUP BY industry, salary_year, foodstuff;
 
 SELECT * FROM t_vojtech_derner_project_SQL_primary_final;
 
 -- secondary table
 CREATE OR REPLACE TABLE t_vojtech_derner_project_SQL_secondary_final
 SELECT	
-c.country,
-e.`year` ,
-e.GDP,
-e.gini,
-e.population
+	c.country,
+	e.`year` ,
+	e.GDP,
+	e.gini,
+	e.population
 FROM economies AS e
 JOIN countries AS c 
 	ON e.country = c.country
