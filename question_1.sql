@@ -3,10 +3,10 @@
 
 CREATE OR REPLACE VIEW v1 AS (
 SELECT 
-industry,
-avg(avg_salary) sal_avg,
-lag(avg(avg_salary)) OVER (PARTITION BY industry ORDER BY salary_year) AS prev,
-salary_year,
+	industry,
+	avg(avg_salary) sal_avg,
+	lag(avg(avg_salary)) OVER (PARTITION BY industry ORDER BY salary_year) AS prev,
+	salary_year,
 CASE 
 	WHEN avg(avg_salary) > lag(avg(avg_salary)) OVER (PARTITION BY industry ORDER BY salary_year) THEN 1
 	WHEN avg(avg_salary) = lag(avg(avg_salary)) OVER (PARTITION BY industry ORDER BY salary_year) THEN 5
@@ -20,11 +20,12 @@ GROUP BY industry, salary_year
 -- 0 = payroll decline, 1 = payroll growth, 5 = payroll stable
 
 SELECT
-industry,
-salary_year,
-diff
+	industry,
+	salary_year,
+	diff
 FROM v1
-WHERE 1=1
+WHERE 
+	1=1
 	AND diff IN (0,5)
 	-- AND diff = 1
 ORDER BY industry, salary_year;
