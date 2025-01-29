@@ -21,15 +21,28 @@ SELECT * FROM v1_vojtech_derner;
 
 -- 0 = payroll decline, 1 = payroll growth, 5 = payroll stable
 
+-- payroll growth industry only 
+WITH w1 AS (
+SELECT
+	DISTINCT industry
+FROM v1_vojtech_derner
+WHERE diff IN (0,5)
+)
+SELECT
+	DISTINCT industry
+FROM v1_vojtech_derner
+WHERE 
+	industry NOT IN (SELECT * FROM w1);
+
+-- overview of each payroll decline
 SELECT
 	industry,
 	salary_year,
 	diff
 FROM v1_vojtech_derner
 WHERE 
-	1=1
-	AND diff IN (0,5)
-	-- AND diff = 1
+	diff IN (0,5)
 ORDER BY industry, salary_year;
+
 
 
