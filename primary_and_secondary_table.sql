@@ -1,16 +1,3 @@
--- research of the same year for table czechia_payroll and czechia_price
-WITH y1 AS (
-SELECT 
-	DISTINCT year(date_to) year_price
-FROM czechia_price AS cp 
-),y2 AS (
-SELECT 
-	DISTINCT payroll_year
-FROM czechia_payroll AS cp2 
-)
-SELECT * FROM y1 JOIN y2 
-ON y1.year_price = y2.payroll_year;
-
 -- primary table
 CREATE OR REPLACE TABLE t_vojtech_derner_project_SQL_primary_final AS 
 SELECT 
