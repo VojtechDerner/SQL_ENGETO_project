@@ -33,7 +33,7 @@ FROM v4_vojtech_derner
 WHERE 
 	diff_per_price IS NOT NULL
 	OR diff_per_salary IS NOT NULL
-    OR diff_per_GDP IS NOT NULL;
+	OR diff_per_GDP IS NOT NULL;
 
 
 
