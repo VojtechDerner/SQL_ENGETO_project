@@ -15,7 +15,8 @@ SELECT
 FROM t_vojtech_derner_project_sql_primary_final AS tp
 JOIN t_vojtech_derner_project_sql_secondary_final AS ts 
 	ON tp.salary_year = ts.YEAR
-WHERE ts.country = 'Czech Republic'
+WHERE 
+	ts.country = 'Czech Republic'
 GROUP BY tp.salary_year
 );
 
@@ -29,7 +30,8 @@ SELECT
 	diff_per_salary,
 	lead(diff_per_salary2) OVER	(ORDER BY salary_year) diff_salary_2y
 FROM v4_vojtech_derner
-WHERE diff_per_price IS NOT NULL
+WHERE 
+	diff_per_price IS NOT NULL
 	OR diff_per_salary IS NOT NULL
     OR diff_per_GDP IS NOT NULL;
 

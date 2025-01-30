@@ -26,7 +26,8 @@ WITH w1 AS (
 SELECT
 	DISTINCT industry
 FROM v1_vojtech_derner
-WHERE diff IN (0,5)
+WHERE 
+	diff IN (0,5)
 )
 SELECT
 	DISTINCT industry
