@@ -12,13 +12,13 @@ GROUP BY salary_year
 
 SELECT 
 	*,
-	abs( diff_per_price - diff_per_salary) diff_diff
+	(diff_per_price - diff_per_salary) diff_diff
 FROM v3_vojtech_derner
 WHERE 
 	diff_per_price IS NOT NULL
 	OR diff_per_salary IS NOT NULL
-	-- HAVING diff_diff > 10
-;
+-- HAVING diff_diff > 10
+ORDER BY diff_diff DESC;
 
 
 
