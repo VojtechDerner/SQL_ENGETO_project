@@ -1,3 +1,4 @@
+-- discord: deri_cze (Vojtěch D.)
 -- primary table
 CREATE OR REPLACE TABLE t_vojtech_derner_project_SQL_primary_final AS 
 SELECT 
