@@ -8,16 +8,16 @@ SELECT
 	round(((avg(avg_salary) - lag(avg(avg_salary)) OVER (PARTITION BY industry ORDER BY salary_year))/lag(avg(avg_salary)) OVER (PARTITION BY industry ORDER BY salary_year)),4)*100 diff_per_salary 
 FROM t_vojtech_derner_project_sql_primary_final AS tvdpspf 
 GROUP BY salary_year
-)
+);
 
 SELECT 
 	*,
-	diff_per_price - diff_per_salary diff_diff
+	abs( diff_per_price - diff_per_salary) diff_diff
 FROM v3_vojtech_derner
 WHERE 
 	diff_per_price IS NOT NULL
 	OR diff_per_salary IS NOT NULL
-	-- HAVING abs(diff_diff) > 10
+	-- HAVING diff_diff > 10
 ;
 
 

@@ -4,9 +4,9 @@
 CREATE OR REPLACE VIEW v1_vojtech_derner AS (
 SELECT 
 	industry,
+	salary_year,
 	avg(avg_salary) sal_avg,
 	lag(avg(avg_salary)) OVER (PARTITION BY industry ORDER BY salary_year) AS prev,
-	salary_year,
 CASE 
 	WHEN avg(avg_salary) > lag(avg(avg_salary)) OVER (PARTITION BY industry ORDER BY salary_year) THEN 1
 	WHEN avg(avg_salary) = lag(avg(avg_salary)) OVER (PARTITION BY industry ORDER BY salary_year) THEN 5
